@@ -1,11 +1,13 @@
+import 'package:calculadora_getx/controllers/calculador_controller.dart';
 import 'package:calculadora_getx/widgets/calc_button.dart';
-import 'package:calculadora_getx/widgets/line_separator.dart';
-import 'package:calculadora_getx/widgets/main_result.dart';
-import 'package:calculadora_getx/widgets/sub_result.dart';
+import 'package:calculadora_getx/widgets/math_result.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CalculatorScreen extends StatelessWidget {
-  const CalculatorScreen({super.key});
+  final calculadorCtrl = Get.put(CalculadorController());
+
+  CalculatorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,33 +18,29 @@ class CalculatorScreen extends StatelessWidget {
           child: Column(
             children: [
               Expanded(child: Container()),
-              const SubResult(text: '1000'),
-              const SubResult(text: 'X'),
-              const SubResult(text: '1000'),
-              const LineSeparator(),
-              const MainResultText(text: '2000'),
+              MathResult(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CalculatorButton(
                     text: 'AC',
                     bgColor: const Color(0xffA5A5A5),
-                    onPressed: () => print('AC'),
+                    onPressed: () => calculadorCtrl.resetAll(),
                   ),
                   CalculatorButton(
                     text: '+/-',
                     bgColor: const Color(0xffA5A5A5),
-                    onPressed: () => print('+/-'),
+                    onPressed: () => calculadorCtrl.changeNegativePosivite(),
                   ),
                   CalculatorButton(
                     text: 'del',
                     bgColor: const Color(0xffA5A5A5),
-                    onPressed: () => print('del'),
+                    onPressed: () => calculadorCtrl.deleteLast(),
                   ),
                   CalculatorButton(
                     text: '/',
-                    bgColor: Color(0xffF0A23B),
-                    onPressed: () => print('/'),
+                    bgColor: const Color(0xffF0A23B),
+                    onPressed: () => calculadorCtrl.selectOperation('/'),
                   ),
                 ],
               ),
@@ -51,20 +49,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: '7',
-                    onPressed: () => print('7'),
+                    onPressed: () => calculadorCtrl.addNumber('7'),
                   ),
                   CalculatorButton(
                     text: '8',
-                    onPressed: () => print('8'),
+                    onPressed: () => calculadorCtrl.addNumber('8'),
                   ),
                   CalculatorButton(
                     text: '9',
-                    onPressed: () => print('9'),
+                    onPressed: () => calculadorCtrl.addNumber('9'),
                   ),
                   CalculatorButton(
                     text: 'X',
                     bgColor: const Color(0xffF0A23B),
-                    onPressed: () => print('X'),
+                    onPressed: () => calculadorCtrl.selectOperation('X'),
                   ),
                 ],
               ),
@@ -73,20 +71,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: '4',
-                    onPressed: () => print('4'),
+                    onPressed: () => calculadorCtrl.addNumber('4'),
                   ),
                   CalculatorButton(
                     text: '5',
-                    onPressed: () => print('5'),
+                    onPressed: () => calculadorCtrl.addNumber('5'),
                   ),
                   CalculatorButton(
                     text: '6',
-                    onPressed: () => print('6'),
+                    onPressed: () => calculadorCtrl.addNumber('6'),
                   ),
                   CalculatorButton(
                     text: '-',
                     bgColor: const Color(0xffF0A23B),
-                    onPressed: () => print('-'),
+                    onPressed: () => calculadorCtrl.selectOperation('-'),
                   ),
                 ],
               ),
@@ -95,20 +93,20 @@ class CalculatorScreen extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: '1',
-                    onPressed: () => print('1'),
+                    onPressed: () => calculadorCtrl.addNumber('1'),
                   ),
                   CalculatorButton(
                     text: '2',
-                    onPressed: () => print('2'),
+                    onPressed: () => calculadorCtrl.addNumber('2'),
                   ),
                   CalculatorButton(
                     text: '3',
-                    onPressed: () => print('3'),
+                    onPressed: () => calculadorCtrl.addNumber('3'),
                   ),
                   CalculatorButton(
                     text: '+',
                     bgColor: const Color(0xffF0A23B),
-                    onPressed: () => print('+'),
+                    onPressed: () => calculadorCtrl.selectOperation('+'),
                   ),
                 ],
               ),
@@ -118,17 +116,16 @@ class CalculatorScreen extends StatelessWidget {
                   CalculatorButton(
                     big: true,
                     text: '0',
-                    onPressed: () => print('0'),
+                    onPressed: () => calculadorCtrl.addNumber('0'),
                   ),
                   CalculatorButton(
                     text: '.',
-                    // bgColor: const Color(0xffA5A5A5),
-                    onPressed: () => print('.'),
+                    onPressed: () => calculadorCtrl.addDecimalPoint(),
                   ),
                   CalculatorButton(
                     text: '=',
                     bgColor: const Color(0xffF0A23B),
-                    onPressed: () => print('='),
+                    onPressed: () => calculadorCtrl.calculateResult(),
                   ),
                 ],
               ),
