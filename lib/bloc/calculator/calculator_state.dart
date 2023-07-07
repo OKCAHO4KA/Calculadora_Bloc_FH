@@ -4,14 +4,23 @@ part of 'calculator_bloc.dart';
 class CalculatorState {
   final String? mathResult;
   final String? firstNumber;
-  final String? secontNumber;
+  final String? secondNumber;
   final String? operation;
 
   const CalculatorState(
       {this.mathResult = '30',
       this.firstNumber = '10',
-      this.secontNumber = '20',
+      this.secondNumber = '20',
       this.operation = '+'});
 
-// class CalculatorInitial extends CalculatorState {}
+  CalculatorState copiWith(
+          {String? mathResult,
+          String? firstNumber,
+          String? secondNumber,
+          String? operation}) =>
+      CalculatorState(
+          mathResult: mathResult ?? this.mathResult,
+          firstNumber: firstNumber ?? this.firstNumber,
+          secondNumber: secondNumber ?? this.secondNumber,
+          operation: operation ?? this.operation);
 }
