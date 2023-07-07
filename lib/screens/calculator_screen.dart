@@ -3,6 +3,7 @@ import 'package:calculadora_getx/widgets/calc_button.dart';
 import 'package:calculadora_getx/widgets/results.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:calculadora_getx/widgets/math_result.dart';
 
 class CalculatorScreen extends StatelessWidget {
   const CalculatorScreen({super.key});
@@ -18,6 +19,7 @@ class CalculatorScreen extends StatelessWidget {
             children: [
               Expanded(child: Container()),
               const Results(),
+              const MathResult(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -120,8 +122,7 @@ class CalculatorScreen extends StatelessWidget {
                   ),
                   CalculatorButton(
                     text: '.',
-                    // bgColor: const Color(0xffA5A5A5),
-                    onPressed: () => print('.'),
+                    onPressed: () => calculatorBloc.add(AddNumber('.')),
                   ),
                   CalculatorButton(
                     text: '=',
